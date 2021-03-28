@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">Document</title>
+</head>
+<body>
+	<section class="bannerabout ">
+
+		<div class="container">
+			<div class="Card">
+				<div class="card-body text-white text-center">
+				<h3>A Unified view of Contacts and Activities</h3>
+				<img th:src="@{/img/abt.png}" alt=""
+							style="width: 95%; height: 65vh;" />
+				<h3>Turn website visitors into contacts</h3>
+				</div>
+			</div>
+
+
+
+		</div>
+
+
+
+	</section>
+
+</body>
+</html>

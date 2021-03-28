@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">Document</title>
+</head>
+<body>
+	<section
+		class="banner d-flex justify-content-center align-items-center">
+		<div class="text-center">
+			<h1>Smart Contact Manager</h1>
+			<p>Back up your contacts and sync them across in your Account and
+				Access the all contacts in your browser at any place any where.</p>
+			<a th:href="@{/signup}" type="button" class="btn primary-one text-white btn-lg">Get
+				Started</a>
+		</div>
+	</section>
+
+</body>
+</html>

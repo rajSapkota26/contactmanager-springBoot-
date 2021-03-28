@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/userBase::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">User DashBoard</title>
+</head>
+<body>
+	<section>
+
+		<div class="card mr-5 ml-3">
+			<div class="card-body">
+			 <span  class="crossbtn"><a th:href="@{/user/index}">
+               <i class="fa fa-times"aria-hidden="true"></i></a></span>
+				<h1 class="text-center"> View Contacts !!</h1>
+				
+				<div class="search_container my-4">
+				<input onkeyup="search()" type="text" class="form-control text-center" id="search_input"
+				placeholder="Search your contacts" />
+				<div class="search_result">
+				<!--  This is search result -->
+				</div>
+				</div>
+				
+				
+				
+				<div th:classappend="${'alert-'+session.message.type}" th:if="${session.message}" class="alert text-center">
+						<span th:text="${session.message.content}"></span>
+						<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+					</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">S.n</th>
+							<th scope="col">Name</th>
+							<th scope="col">Email</th>
+							<th scope="col">Phone</th>
+							<th scope="col">View</th>
+							<th scope="col">Delete</th>
+							<th scope="col">Edit</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="c:${contact}">
+							<th scope="row" th:text="${'SCM2020'+c.cId}">1</th>
+							<td>
+							<img th:src="@{'/images/'+${c.image}}" alt="profile photo" class="pf_pic mx-2" />
+							<span th:text="${c.name}"></span>
+							</td>
+							<td th:text="${c.email}">Otto</td>
+							<td th:text="${c.phone}">@mdo</td>
+							<td>
+							<h3><a th:href="@{'/user/contact/'+${c.cId}}"><i class="fa fa-eye" aria-hidden="true"></i></a></h3>
+						    </td>
+							<td>
+								<h3><span th:onclick="|deletContact(${c.cId})|"><i class="fa fa-trash" aria-hidden="true"></i></span></h3>
+						    </td>
+							<td><form th:action="@{'/user/update/'+${c.cId}}" method="post">
+						<button type="submit"><i class="fa fa-pencil" aria-hidden="true" ></i></button>
+						</form>
+							</h3>
+						    </td>
+						</tr>
+
+
+					</tbody>
+				</table>
+				<!-- pegination -->
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item" th:if="${currentPage!=0}">
+						<a class="page-link" th:href="@{'/user/allContact/'+${currentPage-1}}"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a>
+						</li>
+						
+						<li th:classappend="${currentPage==i-1?'active':''}"
+						th:each="i:${#numbers.sequence(1,totalPage)}" class="page-item">
+						<a class="page-link" th:href="@{'/user/allContact/'+${i-1}}" th:text="${i}">1</a></li>
+						
+						
+						<li class="page-item" th:if="${currentPage+1 !=totalPage}">
+						<a class="page-link" th:href="@{'/user/allContact/'+${currentPage+1}}"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+	</section>
+
+</body>
+</html>
+
+
+
