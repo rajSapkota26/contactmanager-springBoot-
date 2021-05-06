@@ -13,7 +13,7 @@ import java.util.*;
 public interface ContactRepository extends JpaRepository<Contacts, Integer>{
 	
 	@Query("from Contacts as u where u.user.id=:user_id")
-	public Page<Contacts>  findContactsByUser(@Param("user_id") int user_id,Pageable pageable);
+	Page<Contacts>  findContactsByUser(@Param("user_id") int user_id, Pageable pageable);
 
-	public List<Contacts> findByNameContainingAndUser(String keywords,User user);
+	List<Contacts> findByNameContainingAndUser(String keywords, User user);
 }
